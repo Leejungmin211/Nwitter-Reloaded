@@ -11,6 +11,7 @@ ${reset};
 body {
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
   background-color: black;
   color: white;
   font-family: 'system-ui', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -30,5 +31,6 @@ button {
   outline: none;
   border: none;
   cursor: pointer;
+  background-color: transparent;
 }
 `;

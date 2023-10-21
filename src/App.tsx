@@ -35,7 +35,6 @@ const router = createBrowserRouter([
 ]);
 
 const Wrapper = styled.main`
-  height: 100vh;
   display: flex;
   justify-content: center;
 `;
