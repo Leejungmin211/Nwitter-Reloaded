@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { auth } from "../firebase";
 
 const Button = styled.button`
-    background-color; white;
+    background-color: white;
     width: 100%;
     font-weight: 500;
     margin-top; 50px;

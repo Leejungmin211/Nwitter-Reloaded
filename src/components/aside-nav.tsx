@@ -5,7 +5,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { TbSquareArrowLeftFilled } from "react-icons/tb";
 import { auth } from "../firebase";
 
-const MenuContainer = styled.nav`
+const MenuContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
