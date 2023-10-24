@@ -29,7 +29,6 @@ export default function ImageFileIcon({
 }) {
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
-    console.log(files);
     const imageSize = files && files[0].size;
     if ((files && files.length === 1) || (imageSize && imageSize < 1048576)) {
       setImageFile(files[0]);

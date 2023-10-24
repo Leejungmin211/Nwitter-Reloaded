@@ -9,7 +9,7 @@ import { Unsubscribe } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { db } from "../firebase";
-import Tweet from "./tweet";
+import TweetCard from "./tweet";
 
 export interface Tweet {
   id: string;
@@ -57,7 +57,7 @@ export default function Timeline() {
   return (
     <Wrapper>
       {tweets.map((tweet) => (
-        <Tweet key={tweet.id} {...tweet} />
+        <TweetCard key={tweet.id} {...tweet} />
       ))}
     </Wrapper>
   );

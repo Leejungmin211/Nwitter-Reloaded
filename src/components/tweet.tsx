@@ -57,7 +57,13 @@ const Button = styled.div`
   }
 `;
 
-export default function Tweet({ username, photo, tweet, userId, id }: Tweet) {
+export default function TweetCard({
+  username,
+  photo,
+  tweet,
+  userId,
+  id,
+}: Tweet) {
   const user = auth.currentUser;
   const [isEdit, setIsEdit] = useState(false);
   const [editTweet, setEditTweet] = useState(tweet);
@@ -81,9 +87,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: Tweet) {
       });
       if (imageFile) {
         const photoRef = ref(storage, `tweets/${user.uid}/${id}`);
-        await deleteObject(photoRef);
-        const locationRef = ref(storage, `tweets/${user.uid}/${preTweet.id}`);
-        const result = await uploadBytes(locationRef, imageFile);
+        const result = await uploadBytes(photoRef, imageFile);
         const url = await getDownloadURL(result.ref);
         await updateDoc(preTweet, {
           photo: url,

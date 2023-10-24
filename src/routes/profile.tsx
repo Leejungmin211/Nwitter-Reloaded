@@ -4,6 +4,7 @@ import { FaUserCircle } from "react-icons/fa";
 import React, { useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
+import UserTimeline from "../components/user-timeline";
 
 const Wrapper = styled.section`
   flex-grow: 3;
@@ -79,6 +80,7 @@ export default function Profile() {
         onChange={onChangeImage}
       />
       <UserName>{user?.displayName ? user.displayName : "Anonymous"} </UserName>
+      <UserTimeline />
     </Wrapper>
   );
 }
