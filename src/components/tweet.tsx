@@ -1,22 +1,22 @@
-import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import {
   deleteObject,
   getDownloadURL,
   ref,
   uploadBytes,
-} from "firebase/storage";
-import React, { useState } from "react";
-import styled from "styled-components";
-import { auth, db, storage } from "../firebase";
-import ImageFileIcon from "./image-file-icon";
-import { Tweet } from "./timeline";
-import { BsTrash } from "react-icons/bs";
-import { GoPencil } from "react-icons/go";
-import { AiOutlineCheckCircle } from "react-icons/ai";
+} from 'firebase/storage';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { auth, db, storage } from '../firebase';
+import ImageFileIcon from './image-file-icon';
+import { Tweet } from './timeline';
+import { BsTrash } from 'react-icons/bs';
+import { GoPencil } from 'react-icons/go';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
 
 const Wrapper = styled.div`
   padding: 20px;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid var(--color-lightgray);
 `;
 
 const Username = styled.span`
@@ -32,8 +32,6 @@ const Payload = styled.p`
 const TextArea = styled.textarea`
   font-size: 15px;
   padding-top: 13px;
-  color: white;
-  background-color: black;
   width: 100%;
 `;
 
@@ -49,8 +47,9 @@ const ButtonWrapper = styled.div`
 `;
 
 const Button = styled.div`
-  color: white;
+  color: var(--color-gray5);
   width: 23px;
+  cursor: pointer;
   svg {
     width: 100%;
     height: 100%;
@@ -78,9 +77,9 @@ export default function TweetCard({
   };
 
   const onCompleteTweet = async () => {
-    if (!user || tweet === "" || tweet.length > 180) return;
+    if (!user || tweet === '' || tweet.length > 180) return;
     try {
-      const preTweet = doc(db, "tweets", id);
+      const preTweet = doc(db, 'tweets', id);
       console.log(preTweet);
       await updateDoc(preTweet, {
         tweet: editTweet,
@@ -102,10 +101,10 @@ export default function TweetCard({
   };
 
   const onDeleteTweet = async () => {
-    const ok = confirm("Are you sure you want to delete this tweet?");
+    const ok = confirm('Are you sure you want to delete this tweet?');
     if (!ok || user?.uid !== userId) return;
     try {
-      await deleteDoc(doc(db, "tweets", id));
+      await deleteDoc(doc(db, 'tweets', id));
       if (photo) {
         const photoRef = ref(storage, `tweets/${user.uid}/${id}`);
         await deleteObject(photoRef);

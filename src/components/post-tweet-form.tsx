@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import React, { useState } from "react";
-import { auth, db, storage } from "../firebase";
-import { addDoc, collection, updateDoc } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import ImageFileIcon from "./image-file-icon";
+import styled from 'styled-components';
+import React, { useState } from 'react';
+import { auth, db, storage } from '../firebase';
+import { addDoc, collection, updateDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import ImageFileIcon from './image-file-icon';
 
 const Form = styled.form`
   display: flex;
@@ -11,11 +11,9 @@ const Form = styled.form`
 `;
 
 const TextArea = styled.textarea`
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid var(--color-lightgray);
   padding: 20px;
   font-size: 15px;
-  color: white;
-  background-color: black;
   width: 100%;
   &::placeholder {
     font-size: 15px;
@@ -33,7 +31,7 @@ const ButtonContainer = styled.div`
   padding: 12px 20px;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid var(--color-lightgray);
 `;
 
 const SubmitBtn = styled.button`
@@ -49,7 +47,7 @@ const SubmitBtn = styled.button`
 
 export default function PostTweetForm() {
   const [isLoading, setIsLoading] = useState(false);
-  const [tweet, setTweet] = useState("");
+  const [tweet, setTweet] = useState('');
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const onTweetChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -59,13 +57,13 @@ export default function PostTweetForm() {
   const onTweetSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const user = auth.currentUser;
-    if (!user || isLoading || tweet === "" || tweet.length > 180) return;
+    if (!user || isLoading || tweet === '' || tweet.length > 180) return;
     try {
       setIsLoading(true);
-      const doc = await addDoc(collection(db, "tweets"), {
+      const doc = await addDoc(collection(db, 'tweets'), {
         tweet,
         createdAt: Date.now(),
-        username: user.displayName || "Anonymous",
+        username: user.displayName || 'Anonymous',
         userId: user.uid,
       });
       if (imageFile) {
@@ -76,7 +74,7 @@ export default function PostTweetForm() {
           photo: url,
         });
       }
-      setTweet("");
+      setTweet('');
       setImageFile(null);
     } catch (e) {
       console.log(e);
@@ -104,7 +102,7 @@ export default function PostTweetForm() {
           />
         </AttachFileContainer>
         <SubmitBtn type="submit">
-          {isLoading ? "Posting..." : "Post Tweet"}
+          {isLoading ? 'Posting...' : 'Post Tweet'}
         </SubmitBtn>
       </ButtonContainer>
     </Form>

@@ -1,54 +1,77 @@
-import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { AiFillHome } from "react-icons/ai";
-import { FaUserCircle } from "react-icons/fa";
-import { TbSquareArrowLeftFilled } from "react-icons/tb";
-import { auth } from "../firebase";
+import { NavLink, useNavigate } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { AiFillHome } from 'react-icons/ai';
+import { FaUserCircle } from 'react-icons/fa';
+import { TbSquareArrowLeftFilled } from 'react-icons/tb';
+import { auth } from '../firebase';
+
+const commonStyles = css`
+  color: var(--color-gray8);
+  &:hover {
+    color: var(--color-darkgray);
+  }
+  font-weight: 500;
+`;
 
 const MenuContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  flex-grow: 1;
-  gap: 50px;
+  width: 200px;
+  gap: 35px;
   padding: 50px 0px;
 `;
 
+const MenuLink = styled(NavLink)`
+  ${commonStyles}
+  &.active {
+    color: var(--color-darkgray);
+    font-weight: 700;
+  }
+`;
+
 const Menu = styled.div`
-  color: white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 21px;
   cursor: pointer;
+  &.logout {
+    ${commonStyles}
+  }
+`;
+
+const Icon = styled.svg`
   height: 35px;
   width: 35px;
-  svg {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 export default function AsideNav() {
   const navigate = useNavigate();
   const logOut = async () => {
-    const ok = confirm("Are you sure you want to log out?");
+    const ok = confirm('Are you sure you want to log out?');
     if (ok) {
       await auth.signOut();
-      navigate("/login");
+      navigate('/login');
     }
   };
 
   return (
     <MenuContainer>
-      <Link to="/">
+      <MenuLink to="/">
         <Menu>
-          <AiFillHome />
+          <Icon as={AiFillHome} />
+          <span>Home</span>
         </Menu>
-      </Link>
-      <Link to="/profile">
+      </MenuLink>
+      <MenuLink to="/profile">
         <Menu>
-          <FaUserCircle />
+          <Icon as={FaUserCircle} />
+          <span>Profile</span>
         </Menu>
-      </Link>
-      <Menu onClick={logOut}>
-        <TbSquareArrowLeftFilled />
+      </MenuLink>
+      <Menu onClick={logOut} className="logout">
+        <Icon as={TbSquareArrowLeftFilled} />
+        <span>Logout</span>
       </Menu>
     </MenuContainer>
   );

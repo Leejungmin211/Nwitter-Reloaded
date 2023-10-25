@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { auth, storage } from "../firebase";
 import { FaUserCircle } from "react-icons/fa";
-import React, { useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import UserTimeline from "../components/user-timeline";

@@ -5,9 +5,8 @@ import AsideNav from "./aside-nav";
 const Wrapper = styled.div`
   display: flex;
   gap: 20px;
-  width: 100%;
   height: 100%;
-  max-width: 860px;
+  width: 860px;
 `;
 
 export default function Layout() {
