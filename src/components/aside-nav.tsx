@@ -7,10 +7,12 @@ import { auth } from '../firebase';
 
 const commonStyles = css`
   color: var(--color-gray8);
+  transition: color 0.3s ease-in-out;
+  font-weight: 500;
   &:hover {
     color: var(--color-darkgray);
+    transition: color 0.3s ease-in-out;
   }
-  font-weight: 500;
 `;
 
 const MenuContainer = styled.div`
