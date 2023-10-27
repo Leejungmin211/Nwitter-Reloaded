@@ -5,11 +5,18 @@ import {
   orderBy,
   query,
   where,
-} from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { auth, db } from "../firebase";
-import { Tweet } from "./timeline";
-import TweetCard from "./tweet";
+} from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { auth, db } from '../firebase';
+import { Tweet } from './timeline';
+import TweetCard from './tweet';
+
+const Wrapper = styled.div`
+  width: 100%;
+  border: 1px solid var(--color-lightgray);
+  margin: 20px 0;
+`;
 
 export default function UserTimeline() {
   const user = auth.currentUser;
@@ -17,13 +24,13 @@ export default function UserTimeline() {
 
   const fetchTweets = async () => {
     const tweetsQuery = query(
-      collection(db, "tweets"),
-      where("userId", "==", user?.uid),
-      orderBy("createdAt", "desc"),
-      limit(25)
+      collection(db, 'tweets'),
+      where('userId', '==', user?.uid),
+      orderBy('createdAt', 'desc'),
+      limit(25),
     );
     const snapshot = await getDocs(tweetsQuery);
-    const tweets = snapshot.docs.map((doc) => {
+    const tweets = snapshot.docs.map(doc => {
       const { photo, tweet, userId, username, createdAt } = doc.data();
       return {
         tweet,
@@ -42,10 +49,10 @@ export default function UserTimeline() {
   }, []);
 
   return (
-    <div>
-      {tweets.map((tweet) => (
+    <Wrapper>
+      {tweets.map(tweet => (
         <TweetCard key={tweet.id} {...tweet} />
       ))}
-    </div>
+    </Wrapper>
   );
 }

@@ -9,6 +9,7 @@ ${reset};
 }
 
 :root {
+  --color-brand: #b8c0ff;
   --color-white: #FFFFFF;
   --color-linegray: #E8E8E8;
   --color-lightgray: #ccc;
@@ -17,6 +18,9 @@ ${reset};
   --color-gray8: #888;
   --color-darkgray: #353535;
   --color-black: #2b2b2b;
+  --color-accent: #4895ef;
+  --color-darkblue: #3f37c9;
+  --color-rose: #fe4a49;
 }
 
 body {
@@ -43,6 +47,11 @@ button {
   border: none;
   cursor: pointer;
   background-color: transparent;
+}
+
+input {
+  border: none;
+  outline: none;
 }
 
 a {text-decoration: none; outline: none; color: inherit; cursor: pointer;}

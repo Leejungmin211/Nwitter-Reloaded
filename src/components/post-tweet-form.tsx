@@ -37,8 +37,9 @@ const ButtonContainer = styled.div`
 const SubmitBtn = styled.button`
   padding: 10px 15px;
   border-radius: 30px;
-  background-color: #6060c9;
-  color: white;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  font-weight: 600;
   &:hover,
   &:active {
     opacity: 0.9;

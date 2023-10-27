@@ -4,6 +4,7 @@ import { AiFillHome } from 'react-icons/ai';
 import { FaUserCircle } from 'react-icons/fa';
 import { TbSquareArrowLeftFilled } from 'react-icons/tb';
 import { auth } from '../firebase';
+import MeYou from '../../public/MeYou.svg';
 
 const commonStyles = css`
   color: var(--color-gray8);
@@ -59,6 +60,9 @@ export default function AsideNav() {
 
   return (
     <MenuContainer>
+      <MenuLink to="/">
+        <img src={MeYou} alt="logo" />
+      </MenuLink>
       <MenuLink to="/">
         <Menu>
           <Icon as={AiFillHome} />

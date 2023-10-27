@@ -50,9 +50,14 @@ const Button = styled.div`
   color: var(--color-gray5);
   width: 23px;
   cursor: pointer;
+  transition: scale 0.2s ease-in-out;
   svg {
     width: 100%;
     height: 100%;
+  }
+  &:hover {
+    scale: 110%;
+    transition: scale 0.2s ease-in-out;
   }
 `;
 
